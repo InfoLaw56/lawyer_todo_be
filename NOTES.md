@@ -6,7 +6,7 @@ Setting up a **VS Code workspace** for a **Django REST API** project involves co
 
 Install these essential extensions from the VS Code marketplace:
 
-* **Python** (by Microsoft) – for syntax highlighting, IntelliSense, and debugging.
+Gitlens* **Python** (by Microsoft) – for syntax highlighting, IntelliSense, and debugging.
 * **Pylance** – for fast and feature-rich Python language support.
 * **Django** – helpful snippets and support.
 * **REST Client** (optional) – test APIs directly from VS Code.
