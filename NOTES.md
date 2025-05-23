@@ -161,3 +161,8 @@ git branch -m master main
 git remote add origin https://github.com/InfoLaw56/lawyer_todo_be.git
 commit
 git push -u origin main
+
+pip freeze > requirements.txt
+
+django-admin startproject lawyer_todo .
+python manage.py startapp todo
