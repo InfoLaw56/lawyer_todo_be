@@ -4,7 +4,7 @@ from django.db import models
 class Client(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     legal_status = models.CharField(blank=True, null=True, max_length=254)
     uid = models.CharField(blank=True, null=True, max_length=11)
     name = models.CharField(blank=True, null=True, max_length=254)
@@ -21,7 +21,7 @@ class Client(models.Model):
 class Court(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     name = models.CharField(blank=True, null=True, max_length=254)
 
     class Meta:
@@ -31,7 +31,7 @@ class Court(models.Model):
 class Judge(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     first_name = models.CharField(blank=True, null=True, max_length=254)
     last_name = models.CharField(blank=True, null=True, max_length=254)
     assistant = models.CharField(blank=True, null=True, max_length=254)
@@ -59,7 +59,7 @@ CLIENT_ROLES = [
 class Case(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     court = models.ForeignKey(Court, on_delete=models.CASCADE)
     board = models.CharField(max_length=1, choices=BOARD_CHOICES, default="1")
     judge = models.ForeignKey(Judge, on_delete=models.CASCADE)
@@ -78,7 +78,7 @@ class Case(models.Model):
 class Emplolyee(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     pNo = models.CharField(blank=True, null=True, max_length=254)
     first_name = models.CharField(blank=True, null=True, max_length=254)
     last_name = models.CharField(blank=True, null=True, max_length=254)
@@ -93,7 +93,7 @@ class Emplolyee(models.Model):
 class Document(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     case = models.ForeignKey(Case, on_delete=models.CASCADE)
     description = models.CharField(blank=True, null=True, max_length=254)
     date = models.DateField(blank=True, null=True)
@@ -121,7 +121,7 @@ IMPORTANCE_CHOICES = [
 class Todo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True, default=1)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default="1")
     importance = models.CharField(max_length=1, choices=IMPORTANCE_CHOICES, default="1")
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
