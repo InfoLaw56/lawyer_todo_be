@@ -166,3 +166,16 @@ pip freeze > requirements.txt
 
 django-admin startproject lawyer_todo .
 python manage.py startapp todo
+
+***Models***
+pip install psycopg2
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'mypass',
+        'HOST': 'localhost',
+        'PORT': '',
+    }}
