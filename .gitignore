@@ -26,3 +26,4 @@ db.sqlite3
 ### Other ###
 git-cheat-sheet-education
 LTD_BE
+.env

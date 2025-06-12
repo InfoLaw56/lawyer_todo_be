@@ -179,3 +179,34 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     }}
+
+***ENV***
+create .env
+
+DB_NAME=todos
+DB_USER=postgres
+DB_PASSWORD=axali20Oci4
+DB_HOST=localhost
+DB_PORT=5432
+
+add .env to .gitignore
+
+pip install django-environ
+
+add to settings.py
+
+import environ
+
+env = environ.Env()
+env.read_env('.env')
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+    }
+}
