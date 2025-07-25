@@ -14,6 +14,14 @@ class Client(models.Model):
     phone = models.CharField(blank=True, null=True, max_length=254)
     email = models.EmailField(blank=True, null=True, max_length=254)
 
+    def __str__(self):
+        client_name = f'{self.first_name} {self.last_name}'
+        if(self.name):
+            return self.name
+        else:
+            return client_name
+
+
     class Meta:
         db_table = 'clients'
 
@@ -23,6 +31,9 @@ class Court(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(blank=True, null=True, default=1)
     name = models.CharField(blank=True, null=True, max_length=254)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'courts'
@@ -38,6 +49,9 @@ class Judge(models.Model):
     secretary = models.CharField(blank=True, null=True, max_length=254)
     phone = models.CharField(blank=True, null=True, max_length=254)
     email = models.EmailField(blank=True, null=True, max_length=254)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         db_table = 'judges'
@@ -66,10 +80,21 @@ class Case(models.Model):
     num_long = models.CharField(blank=True, null=True, max_length=254)
     num_short = models.CharField(blank=True, null=True, max_length=254)
     description = models.CharField(blank=True, null=True, max_length=254)
-    start_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     client_role = models.CharField(max_length=1, choices=CLIENT_ROLES, default="1")
     opponent = models.CharField(blank=True, null=True, max_length=254)
+    system_user = models.CharField(blank=True, null=True, max_length=254)
+    system_pass = models.CharField(blank=True, null=True, max_length=254)
+
+    def __str__(self):
+        client_name = ''
+        if(self.client.name):
+            client_name = self.client.name
+        else:
+            client_name = f'{self.client.first_name} {self.client.last_name}'
+        string = f'{self.description}. კლიენტი: {client_name}'
+        return string
 
     class Meta:
         db_table = 'cases'
